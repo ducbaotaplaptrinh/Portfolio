@@ -13,6 +13,8 @@
 
 Ứng dụng chưa nhận được `DATABASE_URL`; đây là trạng thái cấu hình thiếu, không phải xác nhận database trống. Sao chép `.env.example` thành `.env.local`, điền `DATABASE_URL` bằng connection string PostgreSQL của Neon cho môi trường development/test, rồi dừng và chạy lại `npm run dev`. Không gửi connection string hoặc commit `.env.local`. Với Vercel, cấu hình biến server-side `DATABASE_URL` trong environment tương ứng và triển khai lại. `DATABASE_URL` không dùng tiền tố `NEXT_PUBLIC_`. Nếu đã cấu hình mà vẫn có lỗi, kiểm tra kết nối và migration trên database test; không tự áp dụng migration production.
 
+Khi chạy bản production local bằng `npm run start`, đặt `AUTH_URL=http://localhost:3000` (hoặc đúng địa chỉ và cổng đang dùng) trong `.env.local` nếu Auth.js báo `UntrustedHost`; URL callback Google phải khớp địa chỉ đó. Với production, dùng URL HTTPS thật của ứng dụng, không dùng địa chỉ localhost.
+
 Không tự chạy migration production. Trước migration quan trọng, tạo bản sao lưu bằng công cụ Neon hoặc `pg_dump` tới nơi an toàn; kiểm tra phục hồi với `pg_restore` trên database riêng. Xem SQL trong `drizzle/` trước khi áp dụng.
 
 ## Mô hình dữ liệu
