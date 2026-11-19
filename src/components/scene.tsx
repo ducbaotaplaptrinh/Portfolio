@@ -1,0 +1,7 @@
+"use client";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { RoundedBox, ContactShadows } from "@react-three/drei";
+import { Suspense, useRef } from "react";
+import type { Group } from "three";
+function Laptop(){const ref=useRef<Group>(null); useFrame((s,delta)=>{if(ref.current){ref.current.rotation.y += (s.pointer.x * .18 - ref.current.rotation.y)*Math.min(delta*3,1); ref.current.rotation.x += (-s.pointer.y*.08-ref.current.rotation.x)*Math.min(delta*3,1)}}); return <group ref={ref} rotation={[0,-.25,0]}><RoundedBox args={[3.2,.16,2.15]} radius={.08} smoothness={2} position={[0,.15,0]}><meshStandardMaterial color="#a9a49a" metalness={.7} roughness={.3}/></RoundedBox><RoundedBox args={[3.05,1.95,.12]} radius={.08} smoothness={2} position={[0,1.12,-1]} rotation={[-.12,0,0]}><meshStandardMaterial color="#343c3d" metalness={.65} roughness={.36}/></RoundedBox><mesh position={[0,1.14,-.925]} rotation={[-.12,0,0]}><planeGeometry args={[2.78,1.67]}/><meshStandardMaterial color="#c7d6c9" roughness={.8}/></mesh><mesh position={[0,.25,.55]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[.8,.45]}/><meshStandardMaterial color="#7d817c"/></mesh></group>}
+export default function Scene(){return <Canvas shadows dpr={[1,1.5]} camera={{position:[4,3,5],fov:35}} gl={{powerPreference:"low-power"}}><ambientLight intensity={1.2}/><directionalLight position={[3,6,4]} intensity={2.2} castShadow/><Suspense fallback={null}><Laptop/><ContactShadows position={[0,0,0]} opacity={.32} scale={9} blur={2.5} far={3}/></Suspense></Canvas>}
