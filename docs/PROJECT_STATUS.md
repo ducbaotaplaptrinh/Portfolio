@@ -48,3 +48,9 @@ Base: `7abe4f7` on `main`. This document describes the changes on `feat/portfoli
 - Added authenticated settings editing for SEO title/description, HTTPS GitHub and LinkedIn links, project/about visibility and 3D enablement; public homepage consumes these settings. Unknown JSON settings keys are retained during updates.
 - Defaults preserve existing behavior when no settings row exists. The editor refuses to save when multiple rows already exist; an existing database-wide singleton constraint is not present, so concurrent writers outside this action may still create duplicates. Theme, contact and broader 3D configuration remain TODO.
 - Unit tests cover form parsing and invalid URLs. Database writes, authenticated save, and rendered visibility tests are SKIPPED until an isolated database is available. No production writes or migrations were performed.
+
+## Project list follow-up
+
+- Added authenticated server-side title search, status filter and pagination (10 per page), with stable ordering and separate unfiltered overview count. Added explicit confirmation checked by the server before project deletion.
+- Unit tests cover filter normalization and encoded pagination links. The database-backed filtered list, delete authorization/confirmation and authenticated responsive UI remain untested against a separate test database. A direct CLI attempt to import the server-only query was blocked by module resolution; this is not counted as an integration pass. No production records were modified.
+- Project image associations, skills relations, edit error feedback and integration testing remain TODO.
