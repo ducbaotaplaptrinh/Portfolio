@@ -36,3 +36,9 @@ Base: `7abe4f7` on `main`. This document describes the changes on `feat/portfoli
 - Neon production read-only check: 14 tables and two migrations; it contains a profile and no projects. No production writes or migrations were performed in this phase. Integration tests requiring writes remain blocked until an isolated test database is provided.
 - Local checks on this branch: 11 unit tests pass; lint has one existing image warning. Check PR CI for the final build result. Responsive dashboard and authenticated browser testing remain outstanding.
 - Next: test dashboard with a real authenticated browser session, complete module error feedback and deletion confirmation, then project pagination and relations. Do not use production for test writes. PR #3 depends on PR #2, which depends on PR #1.
+
+## Media metadata follow-up
+
+- Added authorized create, edit and confirmed delete of media metadata with validation, feedback and empty state. Only existing local paths or HTTPS URLs are stored; no binaries are uploaded or deleted. Allowed MIME types and declared file size are validated, but the remote file itself is not inspected.
+- Unit tests validate accepted paths and MIME/size rejection. Production write/CRUD and authorization integration tests remain SKIPPED until an isolated test database is configured.
+- Next: test authenticated media CRUD against a disposable database, add a storage provider if upload is required, connect asset selection to projects/profile, then implement settings and contact with durable rate limiting.
