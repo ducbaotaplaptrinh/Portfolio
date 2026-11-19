@@ -52,7 +52,7 @@ export function ExperienceForms({ items }: { items: Experience[] }) {
       {items.length === 0 && <p>Chưa có kinh nghiệm nào được nhập.</p>}
       {items.map(item => (
         <div key={item.id}>
-          <h3>{item.position} — {item.company}</h3>
+          <h3>{item.position}, {item.company}</h3>
           <form action={saveExperience} className="admin-form">
             <ExperienceFields item={item} />
             <button type="submit">Lưu kinh nghiệm</button>
