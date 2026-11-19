@@ -54,3 +54,18 @@ Base: `7abe4f7` on `main`. This document describes the changes on `feat/portfoli
 - Added authenticated server-side title search, status filter and pagination (10 per page), with stable ordering and separate unfiltered overview count. Added explicit confirmation checked by the server before project deletion.
 - Unit tests cover filter normalization and encoded pagination links. The database-backed filtered list, delete authorization/confirmation and authenticated responsive UI remain untested against a separate test database. A direct CLI attempt to import the server-only query was blocked by module resolution; this is not counted as an integration pass. No production records were modified.
 - Project image associations, skills relations, edit error feedback and integration testing remain TODO.
+
+## Hero visibility and content inventory
+
+- Reproduced the original missing 3D: browser/OS `prefers-reduced-motion: reduce` made the old Hero disable Canvas and render only `</>`. With `no-preference`, WebGL Canvas rendered; mobile canvas overlapped the CTA. No page errors were observed in the tested Chrome environment. Existing database settings did not disable the model.
+- Replaced the placeholder with a workstation fallback, added a real R3F workstation with a code texture and device quality cap, corrected mobile stacking, and retained an accessible reduced-motion/static fallback. Missing/unavailable database now displays a distinct data-unavailable message while the generic Hero can still render. Added 3D preview and validated quality/motion settings to Admin.
+- Browser checks with software WebGL: desktop and 375px mobile Canvas rendered; reduced motion and simulated missing WebGL displayed fallback. Missing DATABASE_URL retained Hero. Real-device GPU performance, full Canvas context loss handling, Admin preview/save and authenticated settings writes remain unverified.
+- Hero Hallmark render audit: 0 FAIL, 2 REFLEX (44c/79). The final whitespace is intentional around the Canvas artwork and documented in the CSS waiver; the audit cannot evaluate the object bounds inside Canvas. Full-page Hallmark/accessibility audit remains outstanding.
+- Read-only production inventory recorded in `docs/CONTENT_INVENTORY.md`. No seed, data writes or migrations performed. Project image and skill associations, case study preview and integration CRUD tests remain TODO.
+
+## Static portfolio and admin navigation
+
+- At the owner's request, removed the interactive 3D Hero and 3D frontend dependencies, and replaced it with a static portfolio layout using existing profile, skills, published projects, experience and education data. Existing database schema and stored model settings remain untouched.
+- Admin sidebar is sticky on desktop and becomes a sticky horizontally scrollable menu on mobile.
+- Owner will provide real content; no unverified portfolio facts were invented or written to production.
+- Existing project/media association, preview, upload, isolated database CRUD tests and UI feedback work remain outstanding.
