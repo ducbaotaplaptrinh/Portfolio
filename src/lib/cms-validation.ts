@@ -1,0 +1,5 @@
+import { z } from "zod";
+const optionalText = (max: number) => z.string().trim().max(max).transform(value => value || null);
+const optionalUrl = z.string().trim().max(2048).refine(value => { if (!value) return true; try { const url = new URL(value); return url.protocol === "https:" || url.protocol === "http:"; } catch { return false; } }, "URL không hợp lệ").transform(value => value || null);
+export const profileSchema = z.object({ fullName: z.string().trim().min(1).max(200), headline: optionalText(300), bio: optionalText(10000), location: optionalText(200), email: z.string().trim().max(320).refine(value => !value || z.email().safeParse(value).success).transform(value => value || null), avatarUrl: optionalUrl, githubUrl: optionalUrl, linkedinUrl: optionalUrl, resumeUrl: optionalUrl });
+export const skillSchema = z.object({ name: z.string().trim().min(1).max(100), slug: z.string().trim().max(100).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/), category: z.string().trim().min(1).max(100), iconUrl: optionalUrl, displayOrder: z.coerce.number().int().min(0).max(100000) });
