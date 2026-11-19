@@ -1,0 +1,5 @@
+ALTER TABLE "contact_messages" ADD CONSTRAINT "messages_status_check" CHECK ("contact_messages"."status" in ('unread', 'read', 'archived'));--> statement-breakpoint
+ALTER TABLE "media_assets" ADD CONSTRAINT "media_asset_type_check" CHECK ("media_assets"."asset_type" in ('image', 'video', 'model3d', 'document'));--> statement-breakpoint
+ALTER TABLE "media_assets" ADD CONSTRAINT "media_file_size_check" CHECK ("media_assets"."file_size" is null or "media_assets"."file_size" >= 0);--> statement-breakpoint
+ALTER TABLE "projects" ADD CONSTRAINT "projects_status_check" CHECK ("projects"."status" in ('draft', 'published', 'archived'));--> statement-breakpoint
+ALTER TABLE "projects" ADD CONSTRAINT "projects_dates_check" CHECK ("projects"."end_date" is null or "projects"."start_date" is null or "projects"."end_date" >= "projects"."start_date");
