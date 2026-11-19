@@ -42,3 +42,9 @@ Base: `7abe4f7` on `main`. This document describes the changes on `feat/portfoli
 - Added authorized create, edit and confirmed delete of media metadata with validation, feedback and empty state. Only existing local paths or HTTPS URLs are stored; no binaries are uploaded or deleted. Allowed MIME types and declared file size are validated, but the remote file itself is not inspected.
 - Unit tests validate accepted paths and MIME/size rejection. Production write/CRUD and authorization integration tests remain SKIPPED until an isolated test database is configured.
 - Next: test authenticated media CRUD against a disposable database, add a storage provider if upload is required, connect asset selection to projects/profile, then implement settings and contact with durable rate limiting.
+
+## Site settings follow-up
+
+- Added authenticated settings editing for SEO title/description, HTTPS GitHub and LinkedIn links, project/about visibility and 3D enablement; public homepage consumes these settings. Unknown JSON settings keys are retained during updates.
+- Defaults preserve existing behavior when no settings row exists. The editor refuses to save when multiple rows already exist; an existing database-wide singleton constraint is not present, so concurrent writers outside this action may still create duplicates. Theme, contact and broader 3D configuration remain TODO.
+- Unit tests cover form parsing and invalid URLs. Database writes, authenticated save, and rendered visibility tests are SKIPPED until an isolated database is available. No production writes or migrations were performed.
