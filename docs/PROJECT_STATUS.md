@@ -62,3 +62,10 @@ Base: `7abe4f7` on `main`. This document describes the changes on `feat/portfoli
 - Browser checks with software WebGL: desktop and 375px mobile Canvas rendered; reduced motion and simulated missing WebGL displayed fallback. Missing DATABASE_URL retained Hero. Real-device GPU performance, full Canvas context loss handling, Admin preview/save and authenticated settings writes remain unverified.
 - Hero Hallmark render audit: 0 FAIL, 2 REFLEX (44c/79). The final whitespace is intentional around the Canvas artwork and documented in the CSS waiver; the audit cannot evaluate the object bounds inside Canvas. Full-page Hallmark/accessibility audit remains outstanding.
 - Read-only production inventory recorded in `docs/CONTENT_INVENTORY.md`. No seed, data writes or migrations performed. Project image and skill associations, case study preview and integration CRUD tests remain TODO.
+
+## Static portfolio and admin navigation
+
+- At the owner's request, removed the interactive 3D Hero and 3D frontend dependencies, and replaced it with a static portfolio layout using existing profile, skills, published projects, experience and education data. Existing database schema and stored model settings remain untouched.
+- Admin sidebar is sticky on desktop and becomes a sticky horizontally scrollable menu on mobile.
+- Owner will provide real content; no unverified portfolio facts were invented or written to production.
+- Existing project/media association, preview, upload, isolated database CRUD tests and UI feedback work remain outstanding.

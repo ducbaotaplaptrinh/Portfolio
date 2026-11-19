@@ -1,6 +1,6 @@
-# Portfolio 3D
+# Portfolio
 
-Ứng dụng Next.js App Router, TypeScript, Tailwind, React Three Fiber và Drizzle/PostgreSQL. Đây là bản foundation đang phát triển; CMS chưa đầy đủ và chưa sẵn sàng production.
+Ứng dụng Next.js App Router, TypeScript, Tailwind và Drizzle/PostgreSQL. Đây là bản foundation đang phát triển; CMS chưa đầy đủ và chưa sẵn sàng production.
 
 ## Chạy local
 

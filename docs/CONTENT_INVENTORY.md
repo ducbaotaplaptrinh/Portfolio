@@ -18,6 +18,6 @@ Kiểm tra chỉ đọc Neon production ngày 19/11/2026. Không lưu thông tin
 2. Nhập hồ sơ, kỹ năng, kinh nghiệm và học vấn từ thông tin đã xác minh.
 3. Thêm dự án ở trạng thái **Bản nháp**; kiểm tra nội dung và quyền công khai trước khi chọn **Công khai**.
 4. Thêm metadata tài nguyên bằng URL HTTPS hoặc đường dẫn local hợp lệ; hệ thống chưa upload hoặc kiểm tra tệp gốc.
-5. Trong **Cấu hình website**, bật/tắt Hero 3D và kiểm tra phần xem trước. Reduced motion và thiếu WebGL sử dụng ảnh tĩnh.
+5. Trong **Cấu hình website**, kiểm tra tiêu đề SEO, liên kết và các mục hiển thị.
 
 Chưa có dữ liệu mẫu được ghi vào production. Project media/skill relations, preview case study và kiểm thử CRUD trên database test vẫn cần hoàn thiện.

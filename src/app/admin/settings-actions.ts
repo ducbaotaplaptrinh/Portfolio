@@ -18,9 +18,8 @@ export async function saveSettings(_previous:SettingsResult, form:FormData):Prom
     if (existing.length > 1) return {ok:false,message:"Có nhiều cấu hình website; cần xử lý dữ liệu trước khi cập nhật."};
     const sections={projects:d.showProjects,about:d.showAbout};
     const socialLinks={github:d.github,linkedin:d.linkedin};
-    const model3d={enabled:d.show3d,quality:d.quality3d,motion:d.motion3d};
-    const values={seoTitle:d.seoTitle || null,seoDescription:d.seoDescription || null,sections,socialLinks,model3d};
-    const updates={seoTitle:values.seoTitle,seoDescription:values.seoDescription,sections:sql`${siteSettings.sections} || ${JSON.stringify(sections)}::jsonb`,socialLinks:sql`${siteSettings.socialLinks} || ${JSON.stringify(socialLinks)}::jsonb`,model3d:sql`${siteSettings.model3d} || ${JSON.stringify(model3d)}::jsonb`};
+    const values={seoTitle:d.seoTitle || null,seoDescription:d.seoDescription || null,sections,socialLinks};
+    const updates={seoTitle:values.seoTitle,seoDescription:values.seoDescription,sections:sql`${siteSettings.sections} || ${JSON.stringify(sections)}::jsonb`,socialLinks:sql`${siteSettings.socialLinks} || ${JSON.stringify(socialLinks)}::jsonb`};
     if (existing[0]) await db.update(siteSettings).set(updates).where(eq(siteSettings.id,existing[0].id));
     else await db.insert(siteSettings).values({id:defaultId,...values}).onConflictDoUpdate({target:siteSettings.id,set:updates});
     revalidatePath("/"); revalidatePath("/admin");
