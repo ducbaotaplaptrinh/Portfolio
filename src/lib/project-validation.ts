@@ -1,0 +1,3 @@
+import { z } from "zod";
+export const projectSchema = z.object({ title: z.string().trim().min(1).max(200), slug: z.string().trim().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(200), summary: z.string().trim().min(1).max(1000), status: z.enum(["draft", "published", "archived"]), content: z.string().trim().max(50000).optional().default(""), displayOrder: z.coerce.number().int().min(0).max(100000).default(0), featured: z.boolean().default(false) });
+export function parseProjectForm(form: FormData) { return projectSchema.safeParse({ ...Object.fromEntries(form), featured: form.get("featured") === "on", displayOrder: form.get("displayOrder") || 0 }); }
